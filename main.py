@@ -6,8 +6,7 @@ api = Api(app)
 
 class profile(Resource):
    def get(self):
-        return("Name:-" "Dewashish Mehta" 
-        "Email:-" "Dewmehta99@gmail.com" "Goal:-" "GATE CS")
+        return{"Name": "Dewashish Mehta","Email:": "Dewmehta99@gmail.com","Goal": "GATE CS")
 
 api.add_resource(profile,"/profile")
 
