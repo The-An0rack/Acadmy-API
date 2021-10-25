@@ -1,23 +1,18 @@
 from flask import Flask
 from flask_restful import Api, Resource
+from requests.api import put
+
+import user_details
 
 app = Flask(__name__)
 api = Api(app)
 
-class dewashish(Resource):
-   def get(self):
-        return{"Name":"Dewashish Mehta","Email":"Dewmehta99@gmail.com","Goal":"GATE CS"}
+class User(Resource):
+   def get(self, email):
+        obj = user_details.get_user_data(email)
+        return obj
 
-api.add_resource(dewashish,"/profile/dew")
-
-class kartik(Resource):
-       def get(self):
-        return{"Name":"Kartik Bhatt","Email":"bhattkartik@gmail.com","Goal":"GATE CS"}
-
-api.add_resource(kartik,"/profile/kartik")
-
-
-
+api.add_resource(User,"/profile/<string:email>")
 
 if __name__ == "__main__":
     app.run(debug=True)
